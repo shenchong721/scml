@@ -1,0 +1,9 @@
+#tool
+/tool/*.pyc
+
+# boost 
+/boost/.idea
+/boost/adaboost/*.pyc
+
+
+
