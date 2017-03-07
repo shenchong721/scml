@@ -4,8 +4,8 @@
 
 1.  boost
     + adaboost
-        + 参考博客：[ AdaBoost--从原理到实现](http://blog.csdn.net/dark_scope/article/details/14103983)、
-    + gbdt
-2.  tool : 一些公用的函数
-
-
+        + 参考博客：[ AdaBoost--从原理到实现](http://blog.csdn.net/dark_scope/article/details/14103983)
+2.  gbdt
+	+ 参考[github (liudragonfly)](https://github.com/liudragonfly/GBDT)
+	
+3.  tool : 一些公用的函数

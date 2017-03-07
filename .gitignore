@@ -5,5 +5,10 @@
 /boost/.idea
 /boost/adaboost/*.pyc
 
+# GBDT
+/GBDT/gbdt/.idea
+/GBDT/gbdt/*.pyc
+
+
 
 
