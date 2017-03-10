@@ -9,6 +9,10 @@
 /GBDT/gbdt/.idea
 /GBDT/gbdt/*.pyc
 
+#word2vec
+/word2vec/.idea
+/word2vec/*pyc
+
 
 
 
