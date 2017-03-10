@@ -1,9 +1,9 @@
-__author__ = 'multiangle'
+# coding=utf-8
+__author__ = 'sc'
 
 import math
 import File_Interface as FI
 from operator import itemgetter as _itemgetter
-import numpy as np
 import jieba
 from sklearn import preprocessing
 from collections import Counter
@@ -11,6 +11,13 @@ import numpy as np
 
 class Word2Vec():
     def __init__(self, vec_len=15000, learn_rate=0.025, win_len=5, model='cbow'):
+        """
+
+        :param vec_len: 向量长度
+        :param learn_rate: 学习速率
+        :param win_len: 窗口大小
+        :param model: 模型
+        """
         self.cutted_text_list = None
         self.vec_len = vec_len
         self.learn_rate = learn_rate
@@ -399,23 +406,34 @@ class MulCounter(Counter):
 if __name__ == '__main__':
     # text = FI.load_pickle('./static/demo.pkl')
     # text =[ x['dealed_text']['left_content'][0] for x in text]
-    data = ['Merge multiple sorted inputs into a single sorted output','The API below differs from textbook heap algorithms in two aspects']
-    wv = Word2Vec(vec_len=500)
+    # data = ['Merge multiple sorted inputs into a single sorted output','The API below differs from textbook heap algorithms in two aspects']
+    # 输入文本
+    data = ["小说”一词最早出现于《庄子·外物》：「饰小说以干县令，其于大达亦远矣。」庄子所谓的「小说」，是指琐碎的言论，与今日小说观念相差甚远。直至东汉桓谭《新论》：「小说家合残丛小语，近取譬喻，以作短书，治身理家，有可观之辞。」班固《汉书．艺文志》将「小说家」列为十家之后，其下的定义为：「小说家者流，盖出于稗官，街谈巷语，道听途说[4]之所造也。」才稍与今日小说的意义相近。而中国小说最大的特色，便自宋代开始具有文言小说与白话小说两种不同的小说系统。文言小说起源于先秦的街谈巷语，是一种小知小道的纪录。在历经魏晋南北朝及隋唐长期的发展，无论是题材或人物的描写，文言小说都有明显的进步，形成笔记与传奇两种小说类型。而白话小说则起源于唐宋时期说话人的话本，故事的取材来自民间，主要表现了百姓的生活及思想意识。但不管文言小说或白话小说都源远流长，呈现各自不同的艺术特色。"]
+    wv = Word2Vec(vec_len=500)  # vec 长度为500
     wv.Train_Model(data)
-    # FI.save_pickle(wv.word_dict,'./static/wv.pkl')
-    #
-    # data = FI.load_pickle('./static/wv.pkl')
-    # x = {}
-    # for key in data:
-    #     temp = data[key]['vector']
-    #     temp = preprocessing.normalize(temp)
-    #     x[key] = temp
-    # FI.save_pickle(x,'./static/normal_wv.pkl')
 
-    # x = FI.load_pickle('./static/normal_wv.pkl')
-    # def cal_simi(data,key1,key2):
-    #     return data[key1].dot(data[key2].T)[0][0]
-    # keys=list(x.keys())
-    # for key in keys:
-    #     print(key,'\t',cal_simi(x,'姚明',key))
+    FI.save_pickle(wv.word_dict,'./static/wv.pkl')
 
+    # 保存以后归一化
+    data = FI.load_pickle('./static/wv.pkl')
+    x = {}
+    for key in data:
+        temp = data[key]['vector']
+        temp = preprocessing.normalize(temp)
+        x[key] = temp
+    FI.save_pickle(x,'./static/normal_wv.pkl')
+
+    x = FI.load_pickle('./static/normal_wv.pkl')
+
+    # 计算两个词之间的相似度
+    def cal_simi(data,key1,key2):
+        return data[key1].dot(data[key2].T)[0][0]
+    keys=list(x.keys())
+    print (keys)
+    for key in keys:
+        print(key,'\t',cal_simi(x,'小说',key))
+
+    print(len(data['小说']))
+    print ( data['小说'])
+    print (data['小说']['vector'])
+    print( len(data['小说']['vector'][0]))

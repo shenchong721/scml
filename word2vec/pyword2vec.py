@@ -209,5 +209,5 @@ if __name__ == '__main__':
         return data[key1].dot(data[key2].T)[0][0]
     keys=list(x.keys())
     for key in keys:
-        print(key,'\t',cal_simi(x,'姚明',key))
+        print(key,'\t',cal_simi(x,'小说',key))
 

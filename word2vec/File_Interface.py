@@ -1,4 +1,5 @@
-__author__ = 'multiangle'
+# coding=utf-8
+__author__ = 'sc'
 
 import csv,pickle
 
